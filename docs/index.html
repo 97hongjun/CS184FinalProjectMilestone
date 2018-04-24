@@ -42,7 +42,13 @@
   <h2 align="middle">Our Idea</h2>
 
     <p>While .dae files that describe scenes of interest are incredibly descriptive, they are not plentiful. Images, while less descriptive, are ubiquitous. It would be interesting and useful if we could alter the BRDFs of arbitrary objects in our images. We can change a picture of a mug from a lambertian brdf to a glossy one (and vice versa). It could also improve 3D reconstruction via binocular stereopsis because algorithms for finding corresponding points assume that objects in the scene have lambertian surface brdfs. While this may be ambitious (and we have a backup plan), ultimately we hope to produce a project that alters/improves a commodity that is prevalent in everyone’s life: an image file.</p>
-  <h2 align="middle">Preliminary Results:</h2>
+  <h2 align="middle">Quality Improvement</h2>
+  <p>LapSRN is a recent idea that extracts key features from an image and uses those features to improve the quality of the original image. 
+  It has produced great results on superresolution of many images from the ImageNet dataset up to 8x superresolution. So far, we have created the two networks and are debugging the
+  network itself. The research has worked on superresolution, but we are working on a quality improvement neural network pipeline that takes in low-quality renders with low ray sample counts and 
+  shallow ray depths and improving the renders such that they have higher effective quality. To do so, we are also building up a large dataset of renders of simple images, such as the ones from our
+  projects 3-1 and 3-2, with two versions of renders for each scene/camera pair: one with low quality, and one with high quality.</p>
+  <h2 align="middle">Preliminary Results:</h2> 
     <h3 align="middle"> CycleGAN Woes: </h3>
     <p> CycleGAN is a recently proposed idea that takes two thematic datasets of images and applies a style transfer between the two. It produced remarkable results in changing horses to zebras and vice versa, applying Monet/Van Gogh style artistry to normal camera images, and infilling crude facades of buildings. We tried using CycleGAN to change glass balls into basketballs, a BRDF transfer from glass to lambertian. One noticable issue was that while the backgrounds between horses and zebras were pretty similar (fields), the backgrounds of our basketballs and our glass balls were completely distinct. As a result, the GAN didn't seem to learn the association between the Glass Ball and the Basketball. In the example below, the process from glass to basketball (left), not much about the ball changes. Rather, the background changes. For basketball to glass ball, the ball just masks into the surroundings and turns green, likely because much of our dataset was glass balls in a nature landscape. Moving forward, we will alter our architecture to make the association between glass and basketball more deliberate.</p>
     <div align="center">
